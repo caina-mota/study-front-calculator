@@ -1,0 +1,25 @@
+version: "3.8"
+services:
+  web:
+    build:     
+      context: .
+      dockerfile: develop.Dockerfile
+    container_name: container_front
+    ports:
+      - "3000:3000"
+    volumes:
+      - ".:/app"
+      - "node_modules:/app/node_modules"
+      - ".next:/app/.next"
+    environment:
+      - NODE_ENV=development
+    networks:
+      - develop-network
+    tty: true
+
+volumes:
+  node_modules:
+  .next:
+networks:
+  develop-network:
+    name: develop_network
